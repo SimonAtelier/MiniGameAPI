@@ -88,6 +88,7 @@ public class GameTest {
 		PlayerLeaveGameStateTestMock playerLeaveGameStateTestMock = new PlayerLeaveGameStateTestMock();
 		UUID uniquePlayerId = UUID.randomUUID();
 		game.setGameState(playerLeaveGameStateTestMock);
+		game.join(uniquePlayerId);
 		game.leave(uniquePlayerId);
 		assertEquals(1, playerLeaveGameStateTestMock.getLeaveCount());
 		assertEquals(1, playerLeaveGameStateTestMock.getPlayers().size());
@@ -165,6 +166,12 @@ public class GameTest {
 		
 		game.join(uniquePlayerId0);
 		assertEquals(amount, exceptionCount);
+	}
+	
+	@Test (expected = CannotLeaveException.class)
+	public void playerLeaveButNotJoinedThrowsException() {
+		UUID uniquePlayerId = UUID.randomUUID();
+		game.leave(uniquePlayerId);
 	}
 	
 	private class CanJoinGameStateTestMock extends GameStateTestAdapter {
