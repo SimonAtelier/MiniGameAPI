@@ -1,0 +1,2 @@
+# MiniGameAPI
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/921ba65af2d740beaed9045b8bd9b7ad)](https://app.codacy.com/gh/SimonAtelier/MiniGameAPI?utm_source=github.com&utm_medium=referral&utm_content=SimonAtelier/MiniGameAPI&utm_campaign=Badge_Grade_Settings)
