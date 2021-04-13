@@ -48,7 +48,7 @@ public class Game {
 		if (getGameState() == null)
 			return;
 		
-		getGameState().tick(this);
+		getGameState().tick();
 	}
 	
 	public long getTickCount() {
@@ -65,6 +65,7 @@ public class Game {
 	
 	public void setGameState(GameState gameState) {
 		this.gameState = gameState;
+		gameState.setGame(this);
 	}
 	
 	public class AlreadyJoinedException extends RuntimeException {

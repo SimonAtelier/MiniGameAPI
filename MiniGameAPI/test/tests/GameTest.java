@@ -9,11 +9,11 @@ import java.util.UUID;
 import org.junit.Before;
 import org.junit.Test;
 
+import entities.AbstractGameState;
 import entities.Game;
 import entities.Game.AlreadyJoinedException;
 import entities.Game.CannotJoinException;
 import entities.Game.CannotLeaveException;
-import entities.GameState;
 
 public class GameTest {
 	
@@ -61,11 +61,10 @@ public class GameTest {
 	}
 	
 	@Test
-	public void tickInvokerIsGame() {
+	public void getGameAfterSetGameState() {
 		GameStateTestMock gameStateTestMock = new GameStateTestMock();
 		game.setGameState(gameStateTestMock);
-		game.tick();
-		assertEquals(true, gameStateTestMock.getInvoker() == game);
+		assertEquals(game, gameStateTestMock.getGame());
 	}
 	
 	@Test
@@ -235,29 +234,23 @@ public class GameTest {
 	
 	private class GameStateTestMock extends GameStateTestAdapter {
 
-		private Game invoker;
 		private long tickCount;
 		
 		@Override
-		public void tick(Game game) {
+		public void tick() {
 			tickCount++;
-			this.invoker = game;
 		}
 		
 		public long getTickCount() {
 			return tickCount;
 		}
 		
-		public Game getInvoker() {
-			return invoker;
-		}
-		
 	}
 	
-	private class GameStateTestAdapter implements GameState {
+	private class GameStateTestAdapter extends AbstractGameState {
 
 		@Override
-		public void tick(Game game) {
+		public void tick() {
 			// TODO Auto-generated method stub
 			
 		}
