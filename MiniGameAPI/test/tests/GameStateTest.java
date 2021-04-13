@@ -20,11 +20,6 @@ public class GameStateTest {
 	}
 	
 	@Test
-	public void nothing() {
-		
-	}
-	
-	@Test
 	public void getGameReturnsNullByDefault() {
 		assertEquals(null, gameState.getGame());
 	}
