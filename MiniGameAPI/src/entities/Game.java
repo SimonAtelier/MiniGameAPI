@@ -34,6 +34,9 @@ public class Game {
 	}
 	
 	public void leave(UUID uniquePlayerId) {
+		if (!players.contains(uniquePlayerId))
+			throw new CannotLeaveException();
+		
 		if (gameState == null)
 			throw new CannotLeaveException();
 		
