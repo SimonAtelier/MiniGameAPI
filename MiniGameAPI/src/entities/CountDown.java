@@ -6,6 +6,7 @@ public class CountDown {
 	private long secondsToCountDown;
 	private long secondsLeft;
 	private State state;
+	private CountDownListener listener;
 
 	public CountDown() {
 		state = new StoppedState();
@@ -25,6 +26,12 @@ public class CountDown {
 
 	public void pause() {
 		state.pause();
+	}
+	
+	private void fireOneSecondOver() {
+		if (listener == null)
+			return;
+		listener.onOneSecondOver(this);
 	}
 
 	public boolean isStopped() {
@@ -59,6 +66,14 @@ public class CountDown {
 	private void setState(State state) {
 		this.state = state;
 		state.onEnterState();
+	}
+	
+	public CountDownListener getCountDownListener() {
+		return listener;
+	}
+	
+	public void setCountDownListener(CountDownListener listener) {
+		this.listener = listener;
 	}
 
 	private abstract class State {
@@ -125,8 +140,8 @@ public class CountDown {
 			tickCount++;
 			if (tickedOneSeconds() && stillSecondsLeft()) {
 				secondsLeft--;
+				fireOneSecondOver();
 			}
-
 		}
 
 		private boolean tickedOneSeconds() {
