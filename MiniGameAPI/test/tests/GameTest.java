@@ -106,7 +106,7 @@ public class GameTest {
 		game.join(UUID.randomUUID());
 	}
 	
-	@Test
+	@Test (expected = Test.None.class)
 	public void joinIfGameStateAllowsJoinThrowsNoException() {
 		CanJoinGameStateTestMock gameState = new CanJoinGameStateTestMock();
 		gameState.setCanJoin(true);
