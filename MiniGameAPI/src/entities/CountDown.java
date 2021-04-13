@@ -83,6 +83,7 @@ public class CountDown {
 
 		@Override
 		public void tick() {
+			// Do nothing
 		}
 
 		@Override
@@ -163,6 +164,7 @@ public class CountDown {
 
 		@Override
 		public void onEnterState() {
+			// Do nothing
 		}
 
 	}
@@ -171,6 +173,7 @@ public class CountDown {
 
 		@Override
 		public void tick() {
+			// Do nothing
 		}
 
 		@Override
@@ -200,6 +203,7 @@ public class CountDown {
 
 		@Override
 		public void onEnterState() {
+			// Do nothing
 		}
 
 	}
