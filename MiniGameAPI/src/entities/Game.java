@@ -20,38 +20,63 @@ public class Game {
 	}
 	
 	public void join(UUID uniquePlayerId) {		
-		if (gameState == null)
+		if (gameStateIsNull())
 			throw new CannotJoinException();
 		
-		if (!gameState.canJoin())
+		if (gameStateDoesNotAllowJoin())
 			throw new CannotJoinException();
 		
-		if (players.contains(uniquePlayerId))
+		if (playerAlreadyJoined(uniquePlayerId))
 			throw new AlreadyJoinedException();
 		
-		gameState.onPlayerJoin(uniquePlayerId);
-		players.add(uniquePlayerId);
+		addPlayer(uniquePlayerId);
+		
+		notifyGameStateAboutPlayerJoin(uniquePlayerId);
 	}
 	
 	public void leave(UUID uniquePlayerId) {
-		if (!players.contains(uniquePlayerId))
+		if (!playerAlreadyJoined(uniquePlayerId))
 			throw new CannotLeaveException();
 		
-		if (gameState == null)
+		if (gameStateIsNull())
 			throw new CannotLeaveException();
 		
+		notifyGameStateAboutPlayerLeave(uniquePlayerId);
+	}
+	
+	private void notifyGameStateAboutPlayerJoin(UUID uniquePlayerId) {
+		gameState.onPlayerJoin(uniquePlayerId);
+	}
+	
+	private void notifyGameStateAboutPlayerLeave(UUID uniquePlayerId) {
 		gameState.onPlayerLeave(uniquePlayerId);
 	}
 	
 	private void incrementTickCount() {
 		tickCount++;
 	}
+	
+	private void addPlayer(UUID uniquePlayerId) {
+		players.add(uniquePlayerId);
+	}
 	 
 	private void tickGameState() {
-		if (getGameState() == null)
+		if (gameStateIsNull())
 			return;
 		
 		getGameState().tick();
+	}
+	
+	private boolean gameStateIsNull() {
+		return getGameState() == null;
+	}
+	
+	private boolean gameStateDoesNotAllowJoin() {
+		return !getGameState().canJoin();
+	}
+	
+	private boolean playerAlreadyJoined(UUID uniquePlayerId) {
+		return players.contains(uniquePlayerId);
 	}
 	
 	public long getTickCount() {
