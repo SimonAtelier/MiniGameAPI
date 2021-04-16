@@ -40,7 +40,7 @@ public class Game {
 		
 		if (gameStateIsNull())
 			throw new CannotLeaveException();
-		
+			
 		notifyGameStateAboutPlayerLeave(uniquePlayerId);
 	}
 	
