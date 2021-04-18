@@ -40,7 +40,9 @@ public class Game {
 		
 		if (gameStateIsNull())
 			throw new CannotLeaveException();
-			
+		
+		removePlayer(uniquePlayerId);
+		
 		notifyGameStateAboutPlayerLeave(uniquePlayerId);
 	}
 	
@@ -58,6 +60,10 @@ public class Game {
 	
 	private void addPlayer(UUID uniquePlayerId) {
 		players.add(uniquePlayerId);
+	}
+	
+	private void removePlayer(UUID uniquePlayerId) {
+		players.remove(uniquePlayerId);
 	}
 	 
 	private void tickGameState() {
