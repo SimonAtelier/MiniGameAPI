@@ -3,6 +3,9 @@ package entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import entities.events.GameEventManager;
+import entities.events.PlayerJoinedGameEvent;
+
 public class Game {
 
 	private long tickCount;
@@ -29,7 +32,7 @@ public class Game {
 			throw new AlreadyJoinedException();
 
 		addPlayer(player);
-
+		firePlayerJoinedEvent(player);
 		notifyGameStateAboutPlayerJoin(player);
 	}
 
@@ -38,8 +41,11 @@ public class Game {
 			throw new CannotLeaveException();
 
 		removePlayer(player);
-
 		notifyGameStateAboutPlayerLeave(player);
+	}
+	
+	private void firePlayerJoinedEvent(Player player) {
+		GameEventManager.getInstance().broadcastEvent(new PlayerJoinedGameEvent(this, player));
 	}
 
 	private void notifyGameStateAboutPlayerJoin(Player player) {
