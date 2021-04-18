@@ -186,6 +186,28 @@ public class GameTest {
 		assertEquals(0, game.getPlayersCount());
 	}
 	
+	@Test
+	public void setGameStateNotifiesEnter() {
+		EnterLeaveTestMock gameState = new EnterLeaveTestMock();
+		game.setGameState(gameState);
+		assertEquals(1, gameState.enterCount);
+		assertEquals(0, gameState.leaveCount);
+	}
+	
+	@Test
+	public void setGameStateEnterNewLeaveOldGameStateIsNotified() {
+		EnterLeaveTestMock gameStateOld = new EnterLeaveTestMock();
+		game.setGameState(gameStateOld);
+		assertEquals(1, gameStateOld.enterCount);
+		assertEquals(0, gameStateOld.leaveCount);
+		
+		EnterLeaveTestMock gameStateNew = new EnterLeaveTestMock();
+		game.setGameState(gameStateNew);
+		
+		assertEquals(1, gameStateOld.enterCount);
+		assertEquals(1, gameStateOld.leaveCount);
+	}
+	
 	private class CanJoinGameStateTestMock extends GameStateTestAdapter {
 		
 		private boolean canJoin;
@@ -262,6 +284,24 @@ public class GameTest {
 		
 		public long getTickCount() {
 			return tickCount;
+		}
+		
+	}
+	
+	
+	private class EnterLeaveTestMock extends GameStateTestAdapter {
+		
+		public int enterCount;
+		public int leaveCount;
+		
+		@Override
+		public void onEnterGameState() {
+			enterCount++;
+		}
+
+		@Override
+		public void onLeaveGameState() {
+			leaveCount++;
 		}
 		
 	}
