@@ -9,6 +9,7 @@ import entities.events.PlayerJoinedGameEvent;
 public class Game {
 
 	private long tickCount;
+	private String name;
 	private GameState gameState;
 	private List<Player> players;
 
@@ -94,6 +95,10 @@ public class Game {
 	public int getPlayersCount() {
 		return players.size();
 	}
+	
+	public Player getPlayerAt(int index) {
+		return players.get(index);
+	}
 
 	public GameState getGameState() {
 		return gameState;
@@ -105,6 +110,14 @@ public class Game {
 		this.gameState = gameState;
 		gameState.setGame(this);
 		gameState.onEnterGameState();
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public class AlreadyJoinedException extends RuntimeException {

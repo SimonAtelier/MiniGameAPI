@@ -208,6 +208,24 @@ public class GameTest {
 		assertEquals(1, gameStateOld.leaveCount);
 	}
 	
+	@Test
+	public void getSetName() {
+		String randomString = UUID.randomUUID().toString();
+		game.setName(randomString);
+		assertEquals(randomString, game.getName());
+	}
+	
+	@Test
+	public void getPlayerAtReturnsJoinedPlayer() {
+		int playersCount = (int) (Math.random() * 20) + 1;
+		game.setGameState(new GameStateTestAdapter());
+		for (int i = 0; i < playersCount; i++) {
+			Player player = new Player(UUID.randomUUID());
+			game.join(player);
+			assertEquals(player, game.getPlayerAt(i));
+		}
+	}
+	
 	private class CanJoinGameStateTestMock extends GameStateTestAdapter {
 		
 		private boolean canJoin;
