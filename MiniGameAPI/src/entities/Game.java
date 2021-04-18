@@ -37,9 +37,6 @@ public class Game {
 		if (!playerAlreadyJoined(player))
 			throw new CannotLeaveException();
 
-		if (gameStateIsNull())
-			throw new CannotLeaveException();
-
 		removePlayer(player);
 
 		notifyGameStateAboutPlayerLeave(player);
