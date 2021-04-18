@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import entities.Player;
+import entities.Player.PlayerIdCannotBeNullException;
 
 public class PlayerTest {
 
@@ -18,10 +19,8 @@ public class PlayerTest {
 	
 	@Before
 	public void setUp() {
-		playerOne = new Player();
-		playerOne.setUniqueId(UUID.randomUUID());
-		playerTwo = new Player();
-		playerTwo.setUniqueId(UUID.randomUUID());
+		playerOne = new Player(UUID.randomUUID());
+		playerTwo = new Player(UUID.randomUUID());
 	}
 	
 	@Test
@@ -51,6 +50,18 @@ public class PlayerTest {
 	@Test
 	public void playerIsNotEqualsToNull() {
 		assertFalse(playerOne.equals(null));
+	}
+	
+	@Test
+	public void constructWithIdReturnsIdWithGet() {
+		UUID uniquePlayerId = UUID.randomUUID();
+		Player player = new Player(uniquePlayerId);
+		assertEquals(uniquePlayerId, player.getUniqueId());
+	}
+	
+	@Test (expected = PlayerIdCannotBeNullException.class)
+	public void setIdToNullThrowsException() {
+		playerOne.setUniqueId(null);
 	}
 	
 }
