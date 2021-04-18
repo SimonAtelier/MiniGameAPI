@@ -7,7 +7,7 @@ public class Player {
 	private UUID uniqueId;
 		
 	public Player(UUID uniqueId) {
-		this.uniqueId = uniqueId;
+		setUniqueId(uniqueId);
 	}
 	
 	public UUID getUniqueId() {

@@ -64,4 +64,9 @@ public class PlayerTest {
 		playerOne.setUniqueId(null);
 	}
 	
+	@Test (expected = PlayerIdCannotBeNullException.class)
+	public void constructPlayerWithNullIdThrowsException() {
+		new Player(null);
+	}
+	
 }
