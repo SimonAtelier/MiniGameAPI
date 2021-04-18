@@ -16,4 +16,8 @@ public interface GameState {
 	
 	void setGame(Game game);
 	
+	void onEnterGameState();
+	
+	void onLeaveGameState();
+	
 }

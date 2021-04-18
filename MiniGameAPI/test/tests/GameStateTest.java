@@ -56,6 +56,18 @@ public class GameStateTest {
 			// TODO Auto-generated method stub
 			return false;
 		}
+
+		@Override
+		public void onEnterGameState() {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onLeaveGameState() {
+			// TODO Auto-generated method stub
+			
+		}
 		
 	}
 	
