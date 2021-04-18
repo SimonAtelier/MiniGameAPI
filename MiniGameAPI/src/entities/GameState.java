@@ -1,14 +1,12 @@
 package entities;
 
-import java.util.UUID;
-
 public interface GameState {
 	
 	void tick();
 	
-	void onPlayerJoin(UUID uniquePlayerId);
+	void onPlayerJoin(Player player);
 	
-	void onPlayerLeave(UUID uniquePlayerId);
+	void onPlayerLeave(Player player);
 	
 	boolean canJoin();
 	

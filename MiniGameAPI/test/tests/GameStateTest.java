@@ -2,13 +2,12 @@ package tests;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.UUID;
-
 import org.junit.Before;
 import org.junit.Test;
 
 import entities.AbstractGameState;
 import entities.Game;
+import entities.Player;
 
 public class GameStateTest {
 
@@ -40,13 +39,13 @@ public class GameStateTest {
 		}
 
 		@Override
-		public void onPlayerJoin(UUID uniquePlayerId) {
+		public void onPlayerJoin(Player player) {
 			// TODO Auto-generated method stub
 			
 		}
 
 		@Override
-		public void onPlayerLeave(UUID uniquePlayerId) {
+		public void onPlayerLeave(Player player) {
 			// TODO Auto-generated method stub
 			
 		}

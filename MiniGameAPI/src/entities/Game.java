@@ -2,16 +2,15 @@ package entities;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class Game {
 
 	private long tickCount;
 	private GameState gameState;
-	private List<UUID> players;
+	private List<Player> players;
 
 	public Game() {
-		players = new ArrayList<UUID>();
+		players = new ArrayList<Player>();
 	}
 
 	public void tick() {
@@ -19,51 +18,51 @@ public class Game {
 		tickGameState();
 	}
 
-	public void join(UUID uniquePlayerId) {
+	public void join(Player player) {
 		if (gameStateIsNull())
 			throw new CannotJoinException();
 
 		if (gameStateDoesNotAllowJoin())
 			throw new CannotJoinException();
 
-		if (playerAlreadyJoined(uniquePlayerId))
+		if (playerAlreadyJoined(player))
 			throw new AlreadyJoinedException();
 
-		addPlayer(uniquePlayerId);
+		addPlayer(player);
 
-		notifyGameStateAboutPlayerJoin(uniquePlayerId);
+		notifyGameStateAboutPlayerJoin(player);
 	}
 
-	public void leave(UUID uniquePlayerId) {
-		if (!playerAlreadyJoined(uniquePlayerId))
+	public void leave(Player player) {
+		if (!playerAlreadyJoined(player))
 			throw new CannotLeaveException();
 
 		if (gameStateIsNull())
 			throw new CannotLeaveException();
 
-		removePlayer(uniquePlayerId);
+		removePlayer(player);
 
-		notifyGameStateAboutPlayerLeave(uniquePlayerId);
+		notifyGameStateAboutPlayerLeave(player);
 	}
 
-	private void notifyGameStateAboutPlayerJoin(UUID uniquePlayerId) {
-		gameState.onPlayerJoin(uniquePlayerId);
+	private void notifyGameStateAboutPlayerJoin(Player player) {
+		gameState.onPlayerJoin(player);
 	}
 
-	private void notifyGameStateAboutPlayerLeave(UUID uniquePlayerId) {
-		gameState.onPlayerLeave(uniquePlayerId);
+	private void notifyGameStateAboutPlayerLeave(Player player) {
+		gameState.onPlayerLeave(player);
 	}
 
 	private void incrementTickCount() {
 		tickCount++;
 	}
 
-	private void addPlayer(UUID uniquePlayerId) {
-		players.add(uniquePlayerId);
+	private void addPlayer(Player player) {
+		players.add(player);
 	}
 
-	private void removePlayer(UUID uniquePlayerId) {
-		players.remove(uniquePlayerId);
+	private void removePlayer(Player player) {
+		players.remove(player);
 	}
 
 	private void tickGameState() {
@@ -81,8 +80,8 @@ public class Game {
 		return !getGameState().canJoin();
 	}
 
-	private boolean playerAlreadyJoined(UUID uniquePlayerId) {
-		return players.contains(uniquePlayerId);
+	private boolean playerAlreadyJoined(Player player) {
+		return players.contains(player);
 	}
 
 	public long getTickCount() {

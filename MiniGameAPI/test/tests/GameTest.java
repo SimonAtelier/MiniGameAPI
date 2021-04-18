@@ -14,6 +14,7 @@ import entities.Game;
 import entities.Game.AlreadyJoinedException;
 import entities.Game.CannotJoinException;
 import entities.Game.CannotLeaveException;
+import entities.Player;
 
 public class GameTest {
 	
@@ -70,41 +71,41 @@ public class GameTest {
 	@Test
 	public void playerJoinIsPassedToState() {
 		PlayerJoinGameStateTestMock joinGameStateTestMock = new PlayerJoinGameStateTestMock();
-		UUID uniquePlayerId = UUID.randomUUID();
+		Player player = new Player(UUID.randomUUID());
 		game.setGameState(joinGameStateTestMock);
-		game.join(uniquePlayerId);
+		game.join(player);
 		assertEquals(1, joinGameStateTestMock.getJoinCount());
 		assertEquals(1, joinGameStateTestMock.getPlayers().size());
-		assertEquals(uniquePlayerId, joinGameStateTestMock.getPlayers().get(0));
+		assertEquals(player, joinGameStateTestMock.getPlayers().get(0));
 	}
 	
 	@Test (expected =  CannotJoinException.class)
 	public void playerJoinNullGameStateThrowsException() {
-		game.join(UUID.randomUUID());
+		game.join(new Player(UUID.randomUUID()));
 	}
 	
 	@Test
 	public void playerLeaveIsPassedToState() {
 		PlayerLeaveGameStateTestMock playerLeaveGameStateTestMock = new PlayerLeaveGameStateTestMock();
-		UUID uniquePlayerId = UUID.randomUUID();
+		Player player = new Player(UUID.randomUUID());
 		game.setGameState(playerLeaveGameStateTestMock);
-		game.join(uniquePlayerId);
-		game.leave(uniquePlayerId);
+		game.join(player);
+		game.leave(player);
 		assertEquals(1, playerLeaveGameStateTestMock.getLeaveCount());
 		assertEquals(1, playerLeaveGameStateTestMock.getPlayers().size());
-		assertEquals(uniquePlayerId, playerLeaveGameStateTestMock.getPlayers().get(0));
+		assertEquals(player, playerLeaveGameStateTestMock.getPlayers().get(0));
 	}
 	
 	@Test (expected = CannotLeaveException.class)
 	public void playerLeaveOnNullGameStateThrowsException() {
-		game.leave(UUID.randomUUID());
+		game.leave(new Player(UUID.randomUUID()));
 	}
 	
 	@Test (expected = CannotJoinException.class)
 	public void exceptionIsThrownIfGameStateDoesNotAllowJoin() {
 		CanJoinGameStateTestMock gameState = new CanJoinGameStateTestMock();
 		game.setGameState(gameState);
-		game.join(UUID.randomUUID());
+		game.join(new Player(UUID.randomUUID()));
 	}
 	
 	@Test (expected = Test.None.class)
@@ -112,17 +113,17 @@ public class GameTest {
 		CanJoinGameStateTestMock gameState = new CanJoinGameStateTestMock();
 		gameState.setCanJoin(true);
 		game.setGameState(gameState);
-		game.join(UUID.randomUUID());
+		game.join(new Player(UUID.randomUUID()));
 	}
 	
 	@Test (expected = AlreadyJoinedException.class)
 	public void joinTwiceThrowsException() {
 		CanJoinGameStateTestMock gameState = new CanJoinGameStateTestMock();
-		UUID uniquePlayerId = UUID.randomUUID();
+		Player player = new Player(UUID.randomUUID());
 		gameState.setCanJoin(true);
 		game.setGameState(gameState);
-		game.join(uniquePlayerId);
-		game.join(uniquePlayerId);
+		game.join(player);
+		game.join(player);
 	}
 	
 	@Test
@@ -137,7 +138,7 @@ public class GameTest {
 		gameState.setCanJoin(true);
 		game.setGameState(gameState);
 		for (int i = 0; i < amount; i++) {
-			game.join(UUID.randomUUID());
+			game.join(new Player(UUID.randomUUID()));
 		}
 		assertEquals(amount, game.getPlayersCount());
 	}
@@ -150,39 +151,38 @@ public class GameTest {
 		gameState.setCanJoin(true);
 		game.setGameState(gameState);
 		
-		UUID uniquePlayerId0 = UUID.randomUUID();
-		game.join(uniquePlayerId0);
+		Player player0 = new Player(UUID.randomUUID());
+		game.join(player0);
 		
 		int amount = (int) (Math.random() * 1000);
 		for (int i = 0; i < amount; i++) {
-			UUID uniquePlayerId = UUID.randomUUID();
+			Player player = new Player(UUID.randomUUID());
 			try {
-				game.join(uniquePlayerId);
-				game.join(uniquePlayerId);
+				game.join(player);
+				game.join(player);
 			} catch (AlreadyJoinedException e) {
 				exceptionCount++;
 			}
 		}
 		
-		game.join(uniquePlayerId0);
+		game.join(player0);
 		assertEquals(amount, exceptionCount);
 	}
 	
 	@Test (expected = CannotLeaveException.class)
 	public void playerLeaveButNotJoinedThrowsException() {
-		UUID uniquePlayerId = UUID.randomUUID();
-		game.leave(uniquePlayerId);
+		game.leave(new Player(UUID.randomUUID()));
 	}
 	
 	@Test
 	public void playersCountJoinLeave() {
-		UUID uniquePlayerId = UUID.randomUUID();
+		Player player = new Player(UUID.randomUUID());
 		CanJoinGameStateTestMock gameState = new CanJoinGameStateTestMock();
 		gameState.canJoin = true;
 		game.setGameState(gameState);
-		game.join(uniquePlayerId);
+		game.join(player);
 		assertEquals(1, game.getPlayersCount());
-		game.leave(uniquePlayerId);
+		game.leave(player);
 		assertEquals(0, game.getPlayersCount());
 	}
 	
@@ -226,19 +226,19 @@ public class GameTest {
 	private class PlayerLeaveGameStateTestMock extends GameStateTestAdapter {
 		
 		private int leaveCount;
-		private List<UUID> players;
+		private List<Player> players;
 		
 		public PlayerLeaveGameStateTestMock() {
-			players = new ArrayList<UUID>();
+			players = new ArrayList<Player>();
 		}
 		
 		@Override
-		public void onPlayerLeave(UUID uniquePlayerId) {
+		public void onPlayerLeave(Player player) {
 			leaveCount++;
-			players.add(uniquePlayerId);
+			players.add(player);
 		}
 		
-		public List<UUID> getPlayers() {
+		public List<Player> getPlayers() {
 			return players;
 		}
 		
@@ -251,23 +251,23 @@ public class GameTest {
 	private class PlayerJoinGameStateTestMock extends GameStateTestAdapter {
 
 		private int joinCount;
-		private List<UUID> players;
+		private List<Player> players;
 		
 		public PlayerJoinGameStateTestMock() {
-			players = new ArrayList<UUID>();
+			players = new ArrayList<Player>();
 		}
 		
 		@Override
-		public void onPlayerJoin(UUID uniquePlayerId) {
+		public void onPlayerJoin(Player player) {
 			joinCount++;
-			players.add(uniquePlayerId);
+			players.add(player);
 		}
 		
 		public int getJoinCount() {
 			return joinCount;
 		}
 		
-		public List<UUID> getPlayers() {
+		public List<Player> getPlayers() {
 			return players;
 		}
 		
@@ -315,13 +315,13 @@ public class GameTest {
 		}
 
 		@Override
-		public void onPlayerJoin(UUID uniquePlayerId) {
+		public void onPlayerJoin(Player player) {
 			// TODO Auto-generated method stub
 			
 		}
 
 		@Override
-		public void onPlayerLeave(UUID uniquePlayerId) {
+		public void onPlayerLeave(Player player) {
 			// TODO Auto-generated method stub
 			
 		}
