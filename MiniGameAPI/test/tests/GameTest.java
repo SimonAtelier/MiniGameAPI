@@ -290,6 +290,18 @@ public class GameTest {
 		public boolean canJoin() {
 			return true;
 		}
+
+		@Override
+		public void onEnterGameState() {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onLeaveGameState() {
+			// TODO Auto-generated method stub
+			
+		}
 		
 	}
 
