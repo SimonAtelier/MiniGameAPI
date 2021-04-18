@@ -174,6 +174,18 @@ public class GameTest {
 		game.leave(uniquePlayerId);
 	}
 	
+	@Test
+	public void playersCountJoinLeave() {
+		UUID uniquePlayerId = UUID.randomUUID();
+		CanJoinGameStateTestMock gameState = new CanJoinGameStateTestMock();
+		gameState.canJoin = true;
+		game.setGameState(gameState);
+		game.join(uniquePlayerId);
+		assertEquals(1, game.getPlayersCount());
+		game.leave(uniquePlayerId);
+		assertEquals(0, game.getPlayersCount());
+	}
+	
 	private class CanJoinGameStateTestMock extends GameStateTestAdapter {
 		
 		private boolean canJoin;
