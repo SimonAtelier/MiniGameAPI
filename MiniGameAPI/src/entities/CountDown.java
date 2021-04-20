@@ -33,6 +33,12 @@ public class CountDown {
 			return;
 		listener.onOneSecondOver(this);
 	}
+	
+	private void fireStarted() {
+		if (listener == null)
+			return;
+		listener.onCountDownStarted(this);
+	}
 
 	public boolean isStopped() {
 		return state.isStopped();
@@ -179,7 +185,7 @@ public class CountDown {
 
 		@Override
 		public void onEnterState() {
-			// Do nothing
+			fireStarted();
 		}
 
 	}

@@ -269,15 +269,31 @@ public class CountDownTest {
 		assertEquals(1, listener.getInvokedTimes());
 		assertEquals(true, countDown == listener.getInvoker());
 	}
+	
+	@Test
+	public void startNotifiesListener() {
+		CountDownListenerTestMock testMock = new CountDownListenerTestMock();
+		countDown.setCountDownListener(testMock);
+		countDown.setSecondsToCountDown(10);
+		countDown.start();
+		assertEquals(1, testMock.invokedTimesStart);
+	}
 
 	private class CountDownListenerTestMock implements CountDownListener {
 
 		private CountDown invoker;
 		private int invokedTimes = 0;
+		private int invokedTimesStart;
 
 		@Override
 		public void onOneSecondOver(CountDown countDown) {
 			invokedTimes++;
+			invoker = countDown;
+		}
+
+		@Override
+		public void onCountDownStarted(CountDown countDown) {
+			invokedTimesStart++;
 			invoker = countDown;
 		}
 
