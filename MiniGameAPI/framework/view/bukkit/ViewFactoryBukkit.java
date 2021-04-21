@@ -7,6 +7,7 @@ import view.ActionBarView;
 import view.DefaultMenuItem;
 import view.DefaultMenuViewModel;
 import view.DefaultScoreViewModel;
+import view.DefaultSpawnItemViewModel;
 import view.DefaultTitleViewModel;
 import view.MenuItem;
 import view.MenuView;
@@ -14,6 +15,8 @@ import view.MenuViewModel;
 import view.MessageView;
 import view.ScoreView;
 import view.ScoreViewModel;
+import view.SpawnItemView;
+import view.SpawnItemViewModel;
 import view.TitleView;
 import view.TitleViewModel;
 import view.ViewFactory;
@@ -85,6 +88,16 @@ public class ViewFactoryBukkit implements ViewFactory {
 	@Override
 	public ScoreViewModel createScoreViewModel() {
 		return new DefaultScoreViewModel();
+	}
+
+	@Override
+	public SpawnItemView createSpawnItemView() {
+		return new SpawnItemViewBukkit();
+	}
+
+	@Override
+	public SpawnItemViewModel createSpawnItemViewModel() {
+		return new DefaultSpawnItemViewModel();
 	}
 
 }

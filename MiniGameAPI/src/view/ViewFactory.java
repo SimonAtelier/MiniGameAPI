@@ -21,5 +21,9 @@ public interface ViewFactory {
 	ScoreView createScoreView();
 	
 	ScoreViewModel createScoreViewModel();
+	
+	SpawnItemView createSpawnItemView();
+	
+	SpawnItemViewModel createSpawnItemViewModel();
 
 }
