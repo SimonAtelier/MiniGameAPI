@@ -37,15 +37,20 @@ public class MenuViewBukkit implements MenuView {
 	
 	private void createItems(MenuViewModel menuViewModel) {
 		for (MenuItem menuItem : menuViewModel.getMenuItems()) {
-			ItemStack itemStack = new ItemStack(Material.matchMaterial(menuItem.getIcon()));
-			ItemMeta itemMeta = itemStack.getItemMeta();
-			itemMeta.setDisplayName(menuItem.getName());
-			itemMeta.setLore(menuItem.getLore());
-			itemStack.setAmount(menuItem.getAmount());
-			itemStack.setItemMeta(itemMeta);
-			inventory.setItem(menuItem.getSlotIndex(), itemStack);
-			actionHandlers[menuItem.getSlotIndex()] = menuItem.getActionHandler();
+			int slotIndex = menuItem.getSlotIndex();
+			inventory.setItem(slotIndex, createItemStackFromMenuItem(menuItem));
+			actionHandlers[slotIndex] = menuItem.getActionHandler();
 		}
+	}
+	
+	private ItemStack createItemStackFromMenuItem(MenuItem menuItem) {
+		ItemStack itemStack = new ItemStack(Material.matchMaterial(menuItem.getIcon()));
+		ItemMeta itemMeta = itemStack.getItemMeta();
+		itemMeta.setDisplayName(menuItem.getName());
+		itemMeta.setLore(menuItem.getLore());
+		itemStack.setAmount(menuItem.getAmount());
+		itemStack.setItemMeta(itemMeta);
+		return itemStack;
 	}
 	
 	public ActionHandler getClickHandler(int index) {
