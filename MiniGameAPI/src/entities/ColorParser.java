@@ -18,7 +18,7 @@ public class ColorParser {
 		return str.toLowerCase().replace("_", "").replace(" ", "");
 	}
 
-	public Object parse(String stringToParse) {
+	public Color parse(String stringToParse) {
 		if (stringToParse == null)
 			throw new ColorFormatException();
 

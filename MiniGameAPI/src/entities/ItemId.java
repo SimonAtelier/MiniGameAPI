@@ -1,5 +1,8 @@
 package entities;
 
+import parser.IsItemLookUp;
+import parser.ItemIdParser;
+
 public enum ItemId {
 
 	ACACIA_BOAT("minecraft:acacia_boat"),
@@ -143,7 +146,6 @@ public enum ItemId {
 	BUBBLE_CORAL_WALL_FAN("minecraft:bubble_coral_wall_fan"),
 	BUCKET("minecraft:bucket"),
 	CACTUS("minecraft:cactus"),
-	CACTUS_GREEN("minecraft:cactus_green"),
 	CAKE("minecraft:cake"),
 	CAMPFIRE("minecraft:campfire"),
 	CARROT("minecraft:carrot"),
@@ -254,7 +256,6 @@ public enum ItemId {
 	CYAN_WOOL("minecraft:cyan_wool"),
 	DAMAGED_ANVIL("minecraft:damaged_anvil"),
 	DANDELION("minecraft:dandelion"),
-	DANDELION_YELLOW("minecraft:dandelion_yellow"),
 	DARK_OAK_BOAT("minecraft:dark_oak_boat"),
 	DARK_OAK_BUTTON("minecraft:dark_oak_button"),
 	DARK_OAK_DOOR("minecraft:dark_oak_door"),
@@ -694,6 +695,7 @@ public enum ItemId {
 	PIG_SPAWN_EGG("minecraft:pig_spawn_egg"),
 	PIGLIN_BANNER_PATTERN("minecraft:piglin_banner_pattern"),
 	PIGLIN_SPAWN_EGG("minecraft:piglin_spawn_egg"),
+	PIGLIN_BRUTE_SPAWN_EGG("minecraft:piglin_brute_spawn_egg"),
 	PILLAGER_SPAWN_EGG("minecraft:pillager_spawn_egg"),
 	PINK_BANNER("minecraft:pink_banner"),
 	PINK_BED("minecraft:pink_bed"),
@@ -854,7 +856,6 @@ public enum ItemId {
 	REPEATING_COMMAND_BLOCK("minecraft:repeating_command_block"),
 	RESPAWN_ANCHOR("minecraft:respawn_anchor"),
 	ROSE_BUSH("minecraft:rose_bush"),
-	ROSE_RED("minecraft:rose_red"),
 	ROTTEN_FLESH("minecraft:rotten_flesh"),
 	SADDLE("minecraft:saddle"),
 	SALMON("minecraft:salmon"),
@@ -877,7 +878,6 @@ public enum ItemId {
 	SHULKER_BOX("minecraft:shulker_box"),
 	SHULKER_SHELL("minecraft:shulker_shell"),
 	SHULKER_SPAWN_EGG("minecraft:shulker_spawn_egg"),
-	SIGN("minecraft:sign"),
 	SILVERFISH_SPAWN_EGG("minecraft:silverfish_spawn_egg"),
 	SKELETON_HORSE_SPAWN_EGG("minecraft:skeleton_horse_spawn_egg"),
 	SKELETON_SKULL("minecraft:skeleton_skull"),
@@ -1008,7 +1008,6 @@ public enum ItemId {
 	VINDICATOR_SPAWN_EGG("minecraft:vindicator_spawn_egg"),
 	VINE("minecraft:vine"),
 	VOID_AIR("minecraft:void_air"),
-	WALL_SIGN("minecraft:wall_sign"),
 	WALL_TORCH("minecraft:wall_torch"),
 	WANDERING_TRADER_SPAWN_EGG("minecraft:wandering_trader_spawn_egg"),
 	WARPED_BUTTON("minecraft:warped_button"),
@@ -1079,15 +1078,14 @@ public enum ItemId {
 	ZOGLIN_SPAWN_EGG("minecraft:zoglin_spawn_egg"),
 	ZOMBIE_HEAD("minecraft:zombie_head"),
 	ZOMBIE_HORSE_SPAWN_EGG("minecraft:zombie_horse_spawn_egg"),
-	ZOMBIE_PIGMAN_SPAWN_EGG("minecraft:zombie_pigman_spawn_egg"),
+	LEGACY_ZOMBIE_PIGMAN_SPAWN_EGG("minecraft:zombie_pigman_spawn_egg"),
 	ZOMBIE_SPAWN_EGG("minecraft:zombie_spawn_egg"),
 	ZOMBIE_VILLAGER_SPAWN_EGG("minecraft:zombie_villager_spawn_egg"),
 	ZOMBIE_WALL_HEAD("minecraft:zombie_wall_head"),
 	ZOMBIFIED_PIGLIN_SPAWN_EGG("minecraft:zombified_piglin_spawn_egg");
-
-	public static ItemId getById(String id) {
-		String key = id.toUpperCase().replace("MINECRAFT:", "");
-		return ItemId.valueOf(key);
+	
+	public static ItemId getIdByPattern(String pattern) {
+		return new ItemIdParser().parse(pattern);
 	}
 	
 	private String id;
@@ -1096,8 +1094,12 @@ public enum ItemId {
 		this.id = id;
 	}
 	
-	public String getId() {
+	public String getNamespacedKey() {
 		return id;
+	}
+	
+	public boolean isBlock() {
+		return !IsItemLookUp.isItem(this);
 	}
 	
 }

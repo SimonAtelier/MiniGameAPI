@@ -11,14 +11,14 @@ public class ItemIdTest {
 	@Test
 	public void idsAreNotEmpty() {
 		for (ItemId itemId : ItemId.values()) {
-			assertEquals(false, itemId.getId().isEmpty());
+			assertEquals(false, itemId.getNamespacedKey().isEmpty());
 		}
 	}
 	
 	@Test
 	public void idStartsWithMinecaftColon() {
 		for (ItemId itemId : ItemId.values()) {
-			assertEquals(true, itemId.getId().startsWith("minecraft:"));
+			assertEquals(true, itemId.getNamespacedKey().startsWith("minecraft:"));
 		}
 	}
 	
@@ -26,7 +26,7 @@ public class ItemIdTest {
 	public void minecraftColonConstantToLowerCaseEqualsId() {
 		for (ItemId itemId : ItemId.values()) {
 			String expected = "minecraft:" + itemId.toString().toLowerCase();
-			assertEquals(expected, itemId.getId());
+			assertEquals(expected, itemId.getNamespacedKey());
 		}
 	}
 		

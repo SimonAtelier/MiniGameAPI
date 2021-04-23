@@ -13,7 +13,7 @@ public class BroadCastJoinMessageController {
 	}
 	
 	private void broadCastMessage(Player player, Game game) {
-		System.out.println("Broadcast Message: player joined");
+//		System.out.println("Broadcast Message: player joined");
 	}
 	
 	private class PlayerJoinEventListener implements GameEventListener<PlayerJoinedGameEvent> {
