@@ -35,29 +35,36 @@ public class TitleViewBukkit implements TitleView {
 	public void setTitleViewModel(TitleViewModel titleViewModel) {
 		this.titleViewModel = titleViewModel;
 	}
-
-	private PacketPlayOutTitle createPacketPlayOutTitleForTitle() {
+	
+	private void displayTitle(UUID viewer) {
 		int fadeInTicks = getTitleViewModel().getTitleFadeInTimeInTicks();
 		int stayTicks = getTitleViewModel().getTitleStayTimeInTicks();
 		int fadeOutTicks = getTitleViewModel().getTitleFadeOutTimeInTicks();
-		String title = getTitleViewModel().getTitle();
-		return new PacketPlayOutTitle(EnumTitleAction.TITLE, ChatSerializer.a("{\"text\":\"" + title + "\"}"),
-				fadeInTicks, stayTicks, fadeOutTicks);
+		Bukkit.getPlayer(viewer).sendTitle(titleViewModel.getTitle(), titleViewModel.getSubtitle(), fadeInTicks, stayTicks, fadeOutTicks);
 	}
 
-	private PacketPlayOutTitle createPacketPlayOutTitleForSubtitle() {
-		int fadeInTicks = getTitleViewModel().getSubtitleFadeInTimeInTicks();
-		int stayTicks = getTitleViewModel().getSubtitleStayTimeInTicks();
-		int fadeOutTicks = getTitleViewModel().getSubtitleFadeOutTimeInTicks();
-		String title = getTitleViewModel().getSubtitle();
-		return new PacketPlayOutTitle(EnumTitleAction.SUBTITLE, ChatSerializer.a("{\"text\":\"" + title + "\"}"),
-				fadeInTicks, stayTicks, fadeOutTicks);
-	}
-
-	private void displayTitle(UUID viewer) {
-		Player player = Bukkit.getPlayer(viewer);
-		((CraftPlayer) player).getHandle().playerConnection.sendPacket(createPacketPlayOutTitleForTitle());
-		((CraftPlayer) player).getHandle().playerConnection.sendPacket(createPacketPlayOutTitleForSubtitle());
-	}
+//	private PacketPlayOutTitle createPacketPlayOutTitleForTitle() {
+//		int fadeInTicks = getTitleViewModel().getTitleFadeInTimeInTicks();
+//		int stayTicks = getTitleViewModel().getTitleStayTimeInTicks();
+//		int fadeOutTicks = getTitleViewModel().getTitleFadeOutTimeInTicks();
+//		String title = getTitleViewModel().getTitle();
+//		return new PacketPlayOutTitle(EnumTitleAction.TITLE, ChatSerializer.a("{\"text\":\"" + title + "\"}"),
+//				fadeInTicks, stayTicks, fadeOutTicks);
+//	}
+//
+//	private PacketPlayOutTitle createPacketPlayOutTitleForSubtitle() {
+//		int fadeInTicks = getTitleViewModel().getSubtitleFadeInTimeInTicks();
+//		int stayTicks = getTitleViewModel().getSubtitleStayTimeInTicks();
+//		int fadeOutTicks = getTitleViewModel().getSubtitleFadeOutTimeInTicks();
+//		String title = getTitleViewModel().getSubtitle();
+//		return new PacketPlayOutTitle(EnumTitleAction.SUBTITLE, ChatSerializer.a("{\"text\":\"" + title + "\"}"),
+//				fadeInTicks, stayTicks, fadeOutTicks);
+//	}
+//
+//	private void displayTitle(UUID viewer) {
+//		Player player = Bukkit.getPlayer(viewer);
+//		((CraftPlayer) player).getHandle().playerConnection.sendPacket(createPacketPlayOutTitleForTitle());
+//		((CraftPlayer) player).getHandle().playerConnection.sendPacket(createPacketPlayOutTitleForSubtitle());
+//	}
 
 }
