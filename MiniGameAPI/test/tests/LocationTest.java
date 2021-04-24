@@ -7,7 +7,7 @@ import java.util.UUID;
 import org.junit.Before;
 import org.junit.Test;
 
-import entities.Location;
+import minigame.entities.Location;
 
 public class LocationTest {
 	

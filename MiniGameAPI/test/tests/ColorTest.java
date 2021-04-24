@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import entities.Color;
+import minigame.entities.Color;
 
 public class ColorTest {
 

@@ -3,7 +3,7 @@ package usecases.broadcastplayerjoined;
 import java.util.List;
 import java.util.UUID;
 
-import gateways.GameGateway;
+import minigame.gateways.GameGateway;
 
 public interface BroadcastPlayerJoined {
 	

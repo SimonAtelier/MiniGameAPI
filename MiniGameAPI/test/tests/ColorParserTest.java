@@ -5,9 +5,9 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import entities.Color;
-import entities.ColorParser;
-import entities.ColorParser.ColorFormatException;
+import minigame.entities.Color;
+import minigame.entities.ColorParser;
+import minigame.entities.ColorParser.ColorFormatException;
 
 public class ColorParserTest {
 

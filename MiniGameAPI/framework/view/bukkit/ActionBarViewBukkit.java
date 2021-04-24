@@ -7,11 +7,11 @@ import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
+import minigame.view.ActionBarView;
 import net.minecraft.server.v1_15_R1.ChatMessageType;
 import net.minecraft.server.v1_15_R1.IChatBaseComponent;
 import net.minecraft.server.v1_15_R1.IChatBaseComponent.ChatSerializer;
 import net.minecraft.server.v1_15_R1.PacketPlayOutChat;
-import view.ActionBarView;
 
 public class ActionBarViewBukkit implements ActionBarView {
 	

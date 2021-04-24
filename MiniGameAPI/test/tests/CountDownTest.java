@@ -5,11 +5,11 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import entities.CountDown;
-import entities.CountDown.AlreadyPausedException;
-import entities.CountDown.AlreadyStartedException;
-import entities.CountDown.AlreadyStoppedException;
-import entities.CountDownListener;
+import minigame.entities.CountDown;
+import minigame.entities.CountDownListener;
+import minigame.entities.CountDown.AlreadyPausedException;
+import minigame.entities.CountDown.AlreadyStartedException;
+import minigame.entities.CountDown.AlreadyStoppedException;
 
 public class CountDownTest {
 

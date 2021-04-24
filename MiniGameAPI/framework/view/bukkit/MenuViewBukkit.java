@@ -9,10 +9,10 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import view.ActionHandler;
-import view.MenuItem;
-import view.MenuView;
-import view.MenuViewModel;
+import minigame.view.ActionHandler;
+import minigame.view.MenuItem;
+import minigame.view.MenuView;
+import minigame.view.MenuViewModel;
 
 public class MenuViewBukkit implements MenuView {
 	

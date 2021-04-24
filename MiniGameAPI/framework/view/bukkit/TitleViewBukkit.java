@@ -4,9 +4,9 @@ import java.util.UUID;
 
 import org.bukkit.Bukkit;
 
-import view.DefaultTitleViewModel;
-import view.TitleView;
-import view.TitleViewModel;
+import minigame.view.DefaultTitleViewModel;
+import minigame.view.TitleView;
+import minigame.view.TitleViewModel;
 
 public class TitleViewBukkit implements TitleView {
 

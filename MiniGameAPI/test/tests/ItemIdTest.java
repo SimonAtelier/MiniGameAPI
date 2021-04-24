@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import entities.ItemId;
+import minigame.entities.ItemId;
 
 public class ItemIdTest {
 	

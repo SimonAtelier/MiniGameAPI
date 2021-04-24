@@ -5,9 +5,9 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import entities.AbstractGameState;
-import entities.Game;
-import entities.Player;
+import minigame.entities.AbstractGameState;
+import minigame.entities.Game;
+import minigame.entities.Player;
 
 public class GameStateTest {
 

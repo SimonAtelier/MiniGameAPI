@@ -9,12 +9,12 @@ import java.util.UUID;
 import org.junit.Before;
 import org.junit.Test;
 
-import entities.Game;
-import entities.GameState;
-import entities.Player;
-import entities.events.GameEventListener;
-import entities.events.GameEventManager;
-import entities.events.PlayerJoinedGameEvent;
+import minigame.entities.Game;
+import minigame.entities.GameState;
+import minigame.entities.Player;
+import minigame.entities.events.GameEventListener;
+import minigame.entities.events.GameEventManager;
+import minigame.entities.events.PlayerJoinedGameEvent;
 
 public class EventManagerTest {
 	

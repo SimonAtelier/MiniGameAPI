@@ -11,10 +11,10 @@ import java.util.UUID;
 import org.junit.Before;
 import org.junit.Test;
 
-import entities.AbstractGameState;
-import entities.Game;
-import entities.Player;
-import gateways.GameGateway;
+import minigame.entities.AbstractGameState;
+import minigame.entities.Game;
+import minigame.entities.Player;
+import minigame.gateways.GameGateway;
 import usecases.broadcastplayerjoined.Broadcast;
 import usecases.broadcastplayerjoined.BroadcastPlayerJoined.BroadcastGameMessageResponse;
 import usecases.broadcastplayerjoined.BroadcastPlayerJoinedMessages;

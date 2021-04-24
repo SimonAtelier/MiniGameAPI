@@ -10,7 +10,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 
-import view.ActionHandler;
+import minigame.view.ActionHandler;
 
 public class MenuController implements Listener {
 	

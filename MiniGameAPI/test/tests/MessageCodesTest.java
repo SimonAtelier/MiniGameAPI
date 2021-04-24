@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.Test;
 
-import view.MessageCodes;
+import minigame.view.MessageCodes;
 
 public class MessageCodesTest {
 	

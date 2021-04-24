@@ -7,9 +7,9 @@ import java.util.UUID;
 
 import org.junit.Test;
 
-import entities.Game;
-import entities.Player;
-import entities.events.PlayerJoinedGameEvent;
+import minigame.entities.Game;
+import minigame.entities.Player;
+import minigame.entities.events.PlayerJoinedGameEvent;
 
 public class PlayerJoinedGameEventTest {
 	

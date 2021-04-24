@@ -1,8 +1,10 @@
 package tests;
 
 import org.junit.Test;
+
+import minigame.entities.ItemId;
+
 import static org.junit.Assert.assertEquals;
-import entities.ItemId;
 
 public class ItemIdByNameWithoutNamespaceTest {
 

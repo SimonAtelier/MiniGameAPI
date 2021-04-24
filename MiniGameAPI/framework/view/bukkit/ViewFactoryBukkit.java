@@ -3,23 +3,23 @@ package view.bukkit;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import view.ActionBarView;
-import view.DefaultMenuItem;
-import view.DefaultMenuViewModel;
-import view.DefaultScoreViewModel;
-import view.DefaultSpawnItemViewModel;
-import view.DefaultTitleViewModel;
-import view.MenuItem;
-import view.MenuView;
-import view.MenuViewModel;
-import view.MessageView;
-import view.ScoreView;
-import view.ScoreViewModel;
-import view.SpawnItemView;
-import view.SpawnItemViewModel;
-import view.TitleView;
-import view.TitleViewModel;
-import view.ViewFactory;
+import minigame.view.ActionBarView;
+import minigame.view.DefaultMenuItem;
+import minigame.view.DefaultMenuViewModel;
+import minigame.view.DefaultScoreViewModel;
+import minigame.view.DefaultSpawnItemViewModel;
+import minigame.view.DefaultTitleViewModel;
+import minigame.view.MenuItem;
+import minigame.view.MenuView;
+import minigame.view.MenuViewModel;
+import minigame.view.MessageView;
+import minigame.view.ScoreView;
+import minigame.view.ScoreViewModel;
+import minigame.view.SpawnItemView;
+import minigame.view.SpawnItemViewModel;
+import minigame.view.TitleView;
+import minigame.view.TitleViewModel;
+import minigame.view.ViewFactory;
 
 public class ViewFactoryBukkit implements ViewFactory {
 

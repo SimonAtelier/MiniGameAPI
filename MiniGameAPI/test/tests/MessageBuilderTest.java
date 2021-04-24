@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.Test;
 
-import view.MessageBuilder;
-import view.MessageBuilder.TextBuilder;
-import view.MessageCodes;
+import minigame.view.MessageBuilder;
+import minigame.view.MessageCodes;
+import minigame.view.MessageBuilder.TextBuilder;
 
 public class MessageBuilderTest {
 

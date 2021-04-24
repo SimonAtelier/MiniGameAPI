@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import entities.Game;
-import gateways.GameGateway;
+import minigame.entities.Game;
+import minigame.gateways.GameGateway;
 
 public class BroadcastPlayerJoinedUseCase implements BroadcastPlayerJoined {
 

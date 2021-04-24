@@ -9,8 +9,8 @@ import java.util.UUID;
 import org.junit.Before;
 import org.junit.Test;
 
-import entities.Player;
-import entities.Player.PlayerIdCannotBeNullException;
+import minigame.entities.Player;
+import minigame.entities.Player.PlayerIdCannotBeNullException;
 
 public class PlayerTest {
 

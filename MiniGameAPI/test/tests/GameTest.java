@@ -9,12 +9,12 @@ import java.util.UUID;
 import org.junit.Before;
 import org.junit.Test;
 
-import entities.AbstractGameState;
-import entities.Game;
-import entities.Game.AlreadyJoinedException;
-import entities.Game.CannotJoinException;
-import entities.Game.CannotLeaveException;
-import entities.Player;
+import minigame.entities.AbstractGameState;
+import minigame.entities.Game;
+import minigame.entities.Player;
+import minigame.entities.Game.AlreadyJoinedException;
+import minigame.entities.Game.CannotJoinException;
+import minigame.entities.Game.CannotLeaveException;
 
 public class GameTest {
 	

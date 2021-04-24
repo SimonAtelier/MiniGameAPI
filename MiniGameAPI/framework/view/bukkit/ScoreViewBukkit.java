@@ -10,8 +10,8 @@ import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 
-import view.ScoreView;
-import view.ScoreViewModel;
+import minigame.view.ScoreView;
+import minigame.view.ScoreViewModel;
 
 public class ScoreViewBukkit implements ScoreView {
 

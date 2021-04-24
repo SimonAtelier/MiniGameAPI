@@ -6,8 +6,8 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.inventory.ItemStack;
 
-import view.SpawnItemView;
-import view.SpawnItemViewModel;
+import minigame.view.SpawnItemView;
+import minigame.view.SpawnItemViewModel;
 
 public class SpawnItemViewBukkit implements SpawnItemView {
 

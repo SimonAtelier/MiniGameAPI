@@ -7,7 +7,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
-import view.MessageView;
+import minigame.view.MessageView;
 
 public class MessageViewBukkit implements MessageView {
 
