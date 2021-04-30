@@ -5,8 +5,8 @@
 In most cases the only way to test a bukkit/spigot plugin is to run the server.
 And for almost every minigame it ist much worse; you need some real players around to test the core gameplay mechanis.
 
-Wouldn't it be nice to have a plugin you can write Unit Tests for?
-Wouldn't life be easier with the ability to simulate game play and mock Player Objects without running the server?
+* Wouldn't it be nice to have a plugin you can write Unit Tests for?
+* Wouldn't life be easier with the ability to simulate game play and mock Player Objects without running the server?
 
 I think it would!
 So let's try to build indepenent Plugins with the principles of Clean Architecture...
